@@ -9,9 +9,6 @@ pipeline {
         }
         
         stage('Push to Dev DockerHub') {
-            when {
-                branch 'dev'
-            }
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub',
@@ -28,7 +25,7 @@ pipeline {
 
         stage('Push to Prod DockerHub') {
             when {
-                branch 'main'
+                environment name: 'GIT_BRANCH', value: 'origin/main'
             }
             steps {
                 withCredentials([usernamePassword(
