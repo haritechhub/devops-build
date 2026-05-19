@@ -28,7 +28,7 @@ pipeline {
 
         stage('Push to Prod DockerHub') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 withCredentials([usernamePassword(
